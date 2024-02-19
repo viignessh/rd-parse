@@ -1,0 +1,28 @@
+source_text ::= { statement } ;
+
+statement ::= ( data_literal | COMMENT | WHITESPACE ) ;
+
+data_literal ::= "true" | "false" | integer | atom | list_literal | tuple_literal | map_literal ;
+
+integer ::= digit { digit | "_" } ;
+digit ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
+atom ::= ":" ( letter | "_" ) { letter | digit | "_" } ;
+
+list_literal ::= "[" [ data_literal { "," data_literal } ] "]" ;
+
+tuple_literal ::= "{" [ data_literal { "," data_literal } ] "}" ;
+
+map_literal ::= "%{" [ key_pair { "," key_pair } ] "}" ;
+
+key_pair ::= data_literal "=>" data_literal | key data_literal ;
+
+key ::= ":" ( letter | "_" ) { letter | digit | "_" } ;
+
+letter ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" ;
+
+COMMENT ::= "#" { any_character } newline ;
+WHITESPACE ::= space { space } ;
+newline ::= "\n" ;
+space ::= " " | "\t" ;
+any_character ::= <any printable ASCII character> ;
